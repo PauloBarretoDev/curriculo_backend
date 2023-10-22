@@ -18,7 +18,7 @@ app.use(
 );
 
 app.get('/',(req,res) => {
-    res.json({ info: 'Node.js, Exprers and Postres API'})
+    res.json({ info: 'API de Curriculos com Node.js, Express e ElephantSQL (POSTGRES)'})
 });
 
 // GET
