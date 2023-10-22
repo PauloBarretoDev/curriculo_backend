@@ -26,10 +26,16 @@ app.get('/curriculos', async (req, res) => {
     try {
       const result = await pool.query('SELECT * FROM Curriculos');
       const curriculos = result.rows();
-      const curriculosComEspacos = curriculos.map(curriculo => {
-        return { ...curriculo, quebraDeLinha: '\n' };
-      });
-      res.json(curriculosComQuebrasDeLinha);
+      const curriculosHTML = curriculos.map(curriculo => {
+        return `
+          <p>Nome: ${curriculo.nome}</p>
+          <p>Email: ${curriculo.email}</p>
+          <p>Telefone: ${curriculo.telefone}</p>
+          <p>Formação: ${curriculo.formacao}</p>
+          <p>Experiência: ${curriculo.experiencia}</p>
+          <br />`;
+      }).join(''); 
+      res.send(curriculosHTML);
     } catch (error) {
       console.error('Erro ao consultar o banco de dados:', error);
       res.status(500).send('Erro interno do servidor');
