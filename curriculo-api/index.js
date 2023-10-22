@@ -51,7 +51,7 @@ app.get('/curriculo/:id', async (req, res) => {
 });
 
 // POST 
-    app.post('/criarCurriculo', async (req, res) => {
+    app.post('/criar-curriculo', async (req, res) => {
         const { nome, email, telefone, formacao, experiencia } = req.body;
     
 
@@ -72,7 +72,7 @@ app.get('/curriculo/:id', async (req, res) => {
     });
 
 // UPDATE
-app.put('/curriculo/:id', async (req, res) => {
+app.put('/editar-curriculo/:id', async (req, res) => {
     const curriculoId = req.params.id;
     const { nome, email, telefone, formacao, experiencia } = req.body;
   
@@ -98,7 +98,7 @@ app.put('/curriculo/:id', async (req, res) => {
 });
 
 // DELETE
-app.delete('/curriculo/:id', async (req, res) => {
+app.delete('/deletar-curriculo/:id', async (req, res) => {
     const curriculoId = req.params.id;
   
     try {
