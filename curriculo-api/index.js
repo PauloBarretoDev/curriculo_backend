@@ -29,6 +29,7 @@ app.get('/curriculos', async (req, res) => {
       const curriculosComEspacos = curriculos.map(curriculo => {
         return { ...curriculo, quebraDeLinha: '\n' };
       });
+      res.json(curriculosComQuebrasDeLinha);
     } catch (error) {
       console.error('Erro ao consultar o banco de dados:', error);
       res.status(500).send('Erro interno do servidor');
