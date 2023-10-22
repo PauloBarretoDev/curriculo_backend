@@ -25,20 +25,7 @@ app.get('/',(req,res) => {
 app.get('/curriculos', async (req, res) => {
     try {
       const result = await pool.query('SELECT * FROM Curriculos');
-      const curriculos = result.rows();
-    // Adicione quebras de linha a campos específicos
-    const curriculosComQuebrasDeLinha = curriculos.map(curriculo => {
-        return {
-          nome: curriculo.nome,
-          email: curriculo.email,
-          telefone: curriculo.telefone,
-          formacao: curriculo.formacao + '\n', // Adicione quebra de linha ao campo 'formacao'
-          experiencia: curriculo.experiencia + '\n' // Adicione quebra de linha ao campo 'experiencia'
-        };
-      });
-  
-      // Responde com os currículos em formato JSON
-      res.json(curriculosComQuebrasDeLinha);
+      res.json(result.rows);
     } catch (error) {
       console.error('Erro ao consultar o banco de dados:', error);
       res.status(500).send('Erro interno do servidor');
